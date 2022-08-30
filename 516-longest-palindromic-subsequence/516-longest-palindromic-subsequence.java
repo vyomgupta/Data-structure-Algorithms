@@ -26,13 +26,7 @@ class Solution {
         
         int n = s.length();
 
-        StringBuilder sb = new StringBuilder();
-        
-        for(int i=s.length()-1;i>=0;i--){
-            sb.append(s.charAt(i));
-        }
-        
-        String s2 = sb.toString();
+        String s2 = new StringBuilder(s).reverse().toString();
         
         int dp[][] = new int[n+1][n+1];
         
