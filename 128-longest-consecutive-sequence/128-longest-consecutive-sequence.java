@@ -11,21 +11,15 @@ class Solution {
          }
       }
 
-      int msp = 0;
       int ml = 0;
       for (int val : arr) {
          if(map.get(val) == true){
-            int tsp = val;
-            int tl = 1;
-
-            while(map.containsKey(tsp + tl)){
-               tl++;
+            int tl = 0;
+            while(map.containsKey(val)){
+                tl++;
+                val++;
             }
-
-            if(tl > ml){
-               ml = tl;
-               msp = tsp;
-            }
+             ml = Math.max(ml,tl);
          }
       }
         return ml;
