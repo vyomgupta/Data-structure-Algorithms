@@ -7,7 +7,7 @@ class Solution {
     
     
     void mergeSort(int[] nums, int start, int end){
-        if (start>=end) return; //Already sorted.
+        if (end - start+1 <= 1) return; //Already sorted.
         int mi = start + (end - start)/ 2;
         mergeSort(nums, start, mi);
         mergeSort(nums, mi+1, end);
