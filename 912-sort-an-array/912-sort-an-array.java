@@ -1,43 +1,40 @@
 class Solution {
-    public int[] merge(int arr[], int arr2[]){
-        int ans[] = new int[arr.length+arr2.length];
-        int i = 0;
-        int j = 0;
-        int idx = 0;
-        
-        while(i<arr.length && j<arr2.length){
-            if(arr[i]>=arr2[j]){
-                ans[idx++] = arr2[j++];
-            }
-            else{
-                ans[idx++] = arr[i++];
-            }
-        }
-        
-        while(i<arr.length){
-            ans[idx++] = arr[i++];
-        }
-        
-        while(j<arr2.length){
-            ans[idx++] = arr2[j++];
-        }
-        return ans;
+    public int[] sortArray(int[] nums) {
+        int N = nums.length;
+        mergeSort(nums, 0, N-1);
+        return nums;
     }
     
-    public int[] mergeSort(int s, int e, int nums[]){
-        if(s>=e){
-            return new int[]{nums[s]};
+    
+    void mergeSort(int[] nums, int start, int end){
+        if (start>=end) return; //Already sorted.
+        int mi = start + (end - start)/ 2;
+        mergeSort(nums, start, mi);
+        mergeSort(nums, mi+1, end);
+        merge(nums, start,mi, end);
+    }
+    
+    void merge(int[] nums, int start, int mi, int end){
+        int lp = start;
+        int rp = mi + 1;
+        int[] buffer = new int[end-start+1];
+        int t = 0; //buffer pointer
+        
+        while (lp <= mi && rp <= end){
+            if (nums[lp] < nums[rp]){
+                buffer[t++] = nums[lp++];
+            }else{
+                buffer[t++] = nums[rp++];
+            }
         }
         
-        int mid = (s + e) / 2;
-        int left[] = mergeSort(s,mid,nums);
-        int right[] = mergeSort(mid+1,e,nums);
-        return merge(left,right);
-        
-
+        while (lp <= mi) buffer[t++] = nums[lp++];
+        while (rp <= end) buffer[t++] = nums[rp++];
+        //Now copy sorted buffer into original array
+        for (int i = start; i <= end; i++){
+            nums[i] = buffer[i-start];
+        }
     }
-    public int[] sortArray(int[] nums) {
-       return mergeSort(0, nums.length-1, nums);
-        
-    }
+    
+    
 }
