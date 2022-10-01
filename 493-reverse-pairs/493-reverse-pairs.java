@@ -1,5 +1,6 @@
 class Solution {
     
+    int ans=0;
     
     public int merge(int nums[], int s, int e){
         
@@ -10,12 +11,14 @@ class Solution {
         int count=0;
         int idx = 0;
         int l=mid+1;
-        
+        int c = 0;
         for(int k=s;k<=mid;k++){
             while(l<=e && nums[k] > (2*(long)nums[l])){
                 l++;
+               c++;
             }
-            count+=(l-(mid+1));
+            count+=c;
+        //    count+=(l-(mid+1));
         }
         
         while(i<=mid && j<=e){
