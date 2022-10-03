@@ -1,13 +1,18 @@
 class Solution {
     public boolean check(int[] nums) {
         
-        int incorrect = 0;
+        int allowed=0;
+        int n = nums.length;
         
-        for(int i=0 ; i<nums.length ; i++){
-            if(nums[i] > nums[(i+1)%nums.length]){
-                incorrect++;
+        for(int i=0;i<n-1;i++){
+            if(nums[i]>nums[i+1]){
+                allowed++;
             }
         }
-        return incorrect<=1?true:false;
+        if(nums[n-1]>nums[0]){
+            allowed++;
+        }
+        
+        return allowed>=2?false:true;
     }
 }
