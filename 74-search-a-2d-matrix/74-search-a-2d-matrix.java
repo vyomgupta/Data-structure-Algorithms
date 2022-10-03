@@ -1,21 +1,28 @@
 class Solution {
-    
-    public boolean searchMatrix_BinarySearch(int[][] matrix, int target) {
-        if (matrix.length == 0) return false;
-        int rows = matrix.length, cols = matrix[0].length;
-
-        int lo = 0, hi = rows * cols - 1;
-        while (lo <= hi) {
-            int mid = lo + (hi - lo) / 2;
-            int num = matrix[mid / cols][mid % cols];
-            if (num == target) return true;
-            else if (num < target) lo = mid + 1;
-            else hi = mid - 1;
+    public boolean searchMatrix(int[][] matrix, int target) {
+        
+        int n = matrix.length, m = matrix[0].length;
+        
+        int start = 0;
+        int end   = n*m-1;
+        
+        while(start<=end){
+            
+            int mid = (start + end) / 2;
+            
+            int dr = mid/m;
+            int dc = mid%m;
+            if(matrix[dr][dc] == target){
+                return true;
+            }
+            else if(matrix[dr][dc] < target){
+                start = mid + 1;
+            }
+            else{
+                end = mid - 1;
+            }
         }
         return false;
-    }
-    public boolean searchMatrix(int[][] matrix, int target) {
-        return searchMatrix_BinarySearch(matrix,target);
         
     }
 }
