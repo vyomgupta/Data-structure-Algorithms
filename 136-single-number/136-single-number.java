@@ -1,12 +1,11 @@
 class Solution {
     public int singleNumber(int[] nums) {
-        
-        int sum=0;
+        int xor =0;
         
         for(int i=0;i<nums.length;i++){
-            sum^=nums[i];
+            int val = nums[i];
+            xor^=val;
         }
-        
-        return sum;
+        return xor;
     }
 }
