@@ -15,7 +15,7 @@ class Solution {
             else if((arr[s] == arr[mid]) && (arr[e] == arr[mid]))
             {
                 s++;
-                e--;
+              //  e--;
             }
             else if(arr[mid]<=arr[e]){
                 if(arr[mid]<target && arr[e]>=target){
