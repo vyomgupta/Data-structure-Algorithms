@@ -9,9 +9,9 @@ class Solution {
             no = no / 10;
             int oldno = newno;
             newno = (newno * 10) + ld;
-            // if((newno - 1)/10  != oldno){
-            //     return false;
-            // }
+            if((newno - ld)/10  != oldno){
+                return false;
+            }
             
         }
         
