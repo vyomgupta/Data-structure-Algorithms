@@ -19,13 +19,14 @@ class Solution {
                     e--;
                 }
                 else{
+                     while(s < e && nums[s] == nums[s+1]) s++;
+                    while(s < e && nums[e] == nums[e-1]) e--;
                     List<Integer> ans = new ArrayList<>();
                     ans.add(nums[i]); ans.add(nums[s]); ans.add(nums[e]);
                     result.add(ans);
                   //  s++;
                     //e--;
-                    while(s < e && nums[s] == nums[s+1]) s++;
-                    while(s < e && nums[e] == nums[e-1]) e--;
+                   
                     s++; e--;
                     
                 }
