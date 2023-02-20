@@ -40,22 +40,14 @@ class Solution {
         // code here
         int s = 0;
         int e = n -1;
+        int first = - 1;
+        int last =- 1;
+        
         while(s <= e){
             int mid = s + (e - s) / 2;
             if(arr[mid] == x){
-                int i = mid - 1;
-                int j = mid + 1;
-                int count = 1;
-                while(i >= 0 && arr[i] == x){
-                    count++; 
-                    i--;
-                }
-                
-                while(j < n && arr[j] == x){
-                    count++; 
-                    j++;
-                }
-                return count;
+                e = mid - 1;
+                first = mid;
             }
             else if(arr[mid] < x){
                 s = mid + 1;
@@ -64,6 +56,22 @@ class Solution {
                 e = mid - 1;
             }
         }
-        return 0;
+
+        s = 0; e = n - 1;
+        while(s <= e){
+            int mid = s + (e - s) / 2;
+            if(arr[mid] == x){
+                s = mid + 1;
+                last = mid;
+            }
+            else if(arr[mid] < x){
+                s = mid + 1;
+            }
+            else{
+                e = mid - 1;
+            }
+        }
+        
+        return first == -1 ? 0 : last - first + 1;
     }
 }
