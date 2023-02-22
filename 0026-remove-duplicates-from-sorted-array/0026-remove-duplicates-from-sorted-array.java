@@ -6,15 +6,10 @@ class Solution {
         }
         
         int idx = 1;
-        int i = 0;
-        nums[0] = nums[0];
-        for( i = 1 ; i < nums.length ; ){
+        for(int i = 1 ; i < nums.length ; i++){
             int val = nums[i];
             if(nums[i] != nums[i-1]){
-                nums[idx++] = nums[i++];
-            }
-            else{
-                i++;
+                nums[idx++] = nums[i];
             }
         }
         
