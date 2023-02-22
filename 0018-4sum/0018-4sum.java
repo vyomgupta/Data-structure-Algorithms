@@ -8,7 +8,9 @@ class Solution {
             if(i > 0 && nums[i] == nums[i - 1]) continue;
             
             for(int j = i + 1 ; j < nums.length - 2 ; j++){
-                if(j > i + 1 && nums[j] == nums[j-1]) continue;
+                while(j < n - 1 && j > i + 1 && nums[j] == nums[j-1]){
+                    j++;
+                } 
                 
                 int s = j + 1; 
                 int e = n - 1;
