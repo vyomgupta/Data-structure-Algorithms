@@ -10,14 +10,28 @@ class Solution {
         int idx = 0;
         int l=mid+1;
         int c = 0;
-        for(int k=s;k<=mid;k++){
-            while(l<=e && nums[k] > (2*(long)nums[l])){
-                l++;
-            //   c++;
+        
+        
+        while(i <= mid && j<= e){
+            if(nums[i] > (2*(long)nums[j])){
+                count += mid - i + 1;
+                j++;
             }
-        //    count+=c;
-           count+=(l-(mid+1));
+            else{
+                i++;
+            }
         }
+        
+        j = mid + 1;
+        i = s;
+        // for(int k=s;k<=mid;k++){
+        //     while(l<=e && nums[k] > (2*(long)nums[l])){
+        //         l++;
+        //     //   c++;
+        //     }
+        // //    count+=c;
+        //    count+=(l-(mid+1));
+        // }
         
         while(i<=mid && j<=e){
             if(nums[i]<=nums[j]){
