@@ -27,7 +27,7 @@ class Solution {
        
         
         while(i<=mid && j<=e){
-            if(nums[i]<nums[j]){
+            if(nums[i]<=nums[j]){
                 ans[idx++] = nums[i++];
             }
             else{
