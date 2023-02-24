@@ -24,17 +24,10 @@ class Solution {
         
         j = mid + 1;
         i = s;
-        // for(int k=s;k<=mid;k++){
-        //     while(l<=e && nums[k] > (2*(long)nums[l])){
-        //         l++;
-        //     //   c++;
-        //     }
-        // //    count+=c;
-        //    count+=(l-(mid+1));
-        // }
+       
         
         while(i<=mid && j<=e){
-            if(nums[i]<=nums[j]){
+            if(nums[i]<nums[j]){
                 ans[idx++] = nums[i++];
             }
             else{
