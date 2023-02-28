@@ -1,36 +1,46 @@
 class Solution {
-    private boolean isPossible(int[] bloomDay, int mid, int k,int booket) {
-        int bouquets = 0, flowersCollected = 0;
-        for (int value : bloomDay) {
-            if (value <= mid) {
-//                If the current flower can be taken with in days then increase the flower flowersCollected.
-                flowersCollected++;
-            } else {
-//                If there is a flower in between that takes more number of days then the given day, then resent the counter.
-                flowersCollected = 0;
+    
+    public boolean isValid(int[] bloomDay, int m, int k, int mid){
+        int c = 0;
+        int count = 0;
+        
+        
+        for(int i = 0 ; i < bloomDay.length ; i ++){
+            int val = bloomDay[i];
+            
+            if(val <= mid){
+                c++;
             }
-//            If the flowersCollected is same as the required flower per bookie, then increase the bouquets count;
-            if (flowersCollected == k) {
-                bouquets++;
-                flowersCollected = 0;
+            else{
+                c = 0;
             }
+            
+            if(c == k){
+                count++;
+                c=0;
+            }
+            
         }
-
-        return bouquets>=booket;
-
+        //System.out.println(count);
+        return count>=m?true:false;
+        //return true;
     }
     
     public int minDays(int[] bloomDay, int m, int k) {
         
-        if(m*k>bloomDay.length) return -1;
-         int s = 1;
-        int e = 1000000009;
+        int s = 1;
+        int e = Integer.MAX_VALUE - 2;
         int ans = -1;
-        while(s<=e){
-            int mid = s +(e-s)/2;
-            if(isPossible(bloomDay,mid,k,m)){
+    
+        
+        System.out.println(isValid(bloomDay, m, k, 12));
+        
+        while(s <= e){
+            int mid = s + (e - s)/2;
+            
+            if(isValid(bloomDay, m, k, mid)){
                 ans = mid;
-                e = mid-1;
+                e = mid - 1;
             }
             else{
                 s = mid + 1;
