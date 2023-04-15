@@ -27,7 +27,21 @@ class Solution {
         for(int row[] : dp)
             Arrays.fill(row,(int)Math.pow(10,9));
         
-        return solve(triangle, 0, 0, dp);
+        
+        for(int i = n - 1; i >= 0 ; i --){
+            for(int j = 0 ; j < triangle.get(i).size() ; j ++){
+                if(i == n - 1){
+                    dp[i][j] = triangle.get(i).get(j);
+                }
+                else{
+                    int min = 100000;
+                    min = Math.min(dp[i + 1][j] + triangle.get(i).get(j), min);
+                    min = Math.min(dp[i + 1][j + 1] + triangle.get(i).get(j), min);
+                    dp[i][j] = min;
+                }
+            }
+        }
+        return dp[0][0];
         
     }
 }
