@@ -1,33 +1,39 @@
 class Solution 
 {
     
-    public int minSumPathUtil(int i, int j, int[][] matrix, int[][] dp) {
-  if(i==0 && j == 0)
-    return matrix[0][0];
-  if(dp[i][j]!=-1) return dp[i][j];
 
-  int min = Integer.MAX_VALUE;
+    public int minSumPath(int n, int m, int[][] matrix){
+    
+    int dp[][]=new int[n][m];
+    
+    for(int i=0; i<n ; i++){
+        for(int j=0; j<m; j++){
+            if(i==0 && j==0) dp[i][j] = matrix[i][j];
+            else{
+                    
+              int min = Integer.MAX_VALUE;
   if(i > 0 ){
-      min = Math.min(min, matrix[i][j]+minSumPathUtil(i-1,j,matrix,dp));
+      min = Math.min(min, matrix[i][j]+dp[i - 1][j]);
   }
   if(j > 0){
-      min = Math.min(min,matrix[i][j]+minSumPathUtil(i,j-1,matrix,dp));
+      min = Math.min(min,matrix[i][j]+dp[i][j - 1]);
   
   }
-  
-  return dp[i][j] = min;
- 
+                dp[i][j] = min;
+            }
+        }
     }
+    
+    return dp[n-1][m-1];
+    
+}
         
     public int minPathSum(int[][] grid) 
     {
         int n = grid.length;
         int m = grid[0].length;
-        
-       int dp[][]=new int[n][m];
-    for(int row[]: dp)
-    Arrays.fill(row,-1);
-        return minSumPathUtil(n-1,m-1,grid,dp);
+         return minSumPath(n, m, grid);
+       
 		}
     
 }
