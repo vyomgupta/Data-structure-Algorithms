@@ -1,29 +1,33 @@
 class Solution {
-    
-    public int solve(List<List<Integer>> triangle, int row, int col, int dp[][]){
-        if(row == triangle.size()){
-            return 0;
+    public int solve(List<List<Integer>> triangle, int i, int j, int dp[][]){
+        if(i == triangle.size() - 1){
+            return triangle.get(i).get(j);
         }
-        if(dp[row][col] != Integer.MIN_VALUE){
-            return dp[row][col];
+        if(dp[i][j] != (int)Math.pow(10,9)){
+            return dp[i][j];
         }
-        int min = Integer.MAX_VALUE;
+        int min = (int)Math.pow(10,9);
+        if(i + 1 < triangle.size()){
+            min = Math.min(min, solve(triangle, i + 1, j, dp) + triangle.get(i).get(j));
+        }
+        if(i + 1 < triangle.size() && j + 1 < triangle.get(i + 1).size()){
+            min = Math.min(min, solve(triangle, i + 1, j + 1, dp)+ triangle.get(i).get(j));
+        }
         
-        min = Math.min(min, solve(triangle, row + 1, col, dp));
-        min = Math.min(min, solve(triangle, row + 1, col + 1, dp));
+        return dp[i][j] = min;
         
-        return dp[row][col] = min + triangle.get(row).get(col);
+        
+        
+        
     }
     public int minimumTotal(List<List<Integer>> triangle) {
         int n = triangle.size();
         
         int dp[][] = new int[n][n];
+        for(int row[] : dp)
+            Arrays.fill(row,(int)Math.pow(10,9));
         
-        for(int i = 0 ; i < n ; i ++){
-            for(int j = 0 ; j < n ; j ++){
-                dp[i][j] = Integer.MIN_VALUE;
-            }
-        }
         return solve(triangle, 0, 0, dp);
+        
     }
 }
