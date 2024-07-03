@@ -1,7 +1,7 @@
 class Solution {
     public int minDifference(int[] nums) {
         
-        if(nums.length <= 3) return 0;
+        if(nums.length <= 4) return 0;
         
 //         PriorityQueue<Integer> pq1 = new PriorityQueue<>();
         
